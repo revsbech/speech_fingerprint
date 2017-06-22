@@ -1,2 +1,4 @@
 *.pyc
 input_samples/
+test_data/
+traindata.pkl
