@@ -17,7 +17,6 @@ def getTrainDataForPerson( personName, fileName):
 	return data
 
 
-
 outArr = []
 for personName in directories:
 	print personName

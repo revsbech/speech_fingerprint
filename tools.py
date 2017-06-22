@@ -32,7 +32,7 @@ def preprocess():
 	print len(trainFeatures), " features"
 	print len(trainLabels), " labels"
 
-	cutoff = 10
+	cutoff = 1
 	total_no_features = len(trainFeatures);
 
 	return trainFeatures[cutoff:total_no_features], trainLabels[cutoff:total_no_features],trainFeatures[0:cutoff],trainLabels[0:cutoff]
