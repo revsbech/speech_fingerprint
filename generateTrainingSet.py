@@ -3,7 +3,7 @@ import soundfile as sf
 import pickle
 from fingerprint import audio_fingerprint
 
-names = ['daniel', 'jon', 'juri', 'mads', 'janerik', 'sidsel']
+names = ['daniel', 'janerik', 'jon', 'juri', 'kasper', 'mads', 'martin', 'sidsel']
 outputFilename = 'traindata.pkl'
 
 def getTrainDataForPerson( personName, fileName):

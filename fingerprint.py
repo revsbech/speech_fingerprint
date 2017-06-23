@@ -1,8 +1,10 @@
+import matplotlib
+matplotlib.use('Agg')
+
 import numpy as np
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 from detect_peak import detect_peaks
-
 
 def audio_fingerprint(signalData, windowSize, sampleRate, overlapRatio = 0, no_samples=6):
 

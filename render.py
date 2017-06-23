@@ -7,11 +7,12 @@ from fingerprint import audio_fingerprint
 filename = 'input_samples/old/martin/aa498cd4-9d92-4ebf-b1e5-b82421f5d655.raw'
 samplerate = 16000
 
-signalData, samplerate = sf.read(filename, channels=1, samplerate=samplerate,  format='RAW', subtype='PCM_16')
 
+signalData, samplerate = sf.read(filename, channels=1, samplerate=samplerate,  format='RAW', subtype='PCM_16')
+Time=np.linspace(0, len(signalData)/samplerate, num=len(signalData))
 ############## PLOT 1 ###############
 plt.subplot(311)
-plt.plot(signalData)
+plt.plot(Time, signalData)
 
 ############## PLOT 2 ###############
 plt.subplot(312)
@@ -24,7 +25,7 @@ spectrum, freqs, t, im = plt.specgram(
 
 
 xxx = audio_fingerprint(signalData, windowSize = 4092, sampleRate = samplerate)
-sampleIndex = 6
+sampleIndex = 14
 fingerprint = xxx[sampleIndex]
 sampleData = spectrum[...,sampleIndex]
 
