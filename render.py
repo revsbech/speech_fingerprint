@@ -4,7 +4,7 @@ import matplotlib.mlab as mlab
 import numpy as np
 from fingerprint import audio_fingerprint
 
-filename = 'input_samples/martin/aa498cd4-9d92-4ebf-b1e5-b82421f5d655.raw'
+filename = 'input_samples/old/martin/aa498cd4-9d92-4ebf-b1e5-b82421f5d655.raw'
 samplerate = 16000
 
 signalData, samplerate = sf.read(filename, channels=1, samplerate=samplerate,  format='RAW', subtype='PCM_16')

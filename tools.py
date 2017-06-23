@@ -1,5 +1,6 @@
 import pickle
 import cPickle
+import numpy as np
 
 
 def loadData():
@@ -21,19 +22,18 @@ def preprocess():
 		for fingerprint_index in range(0, no_fingerprints):
 
 			testData = data[index]["fingerprints"][fingerprint_index]
-			no_points = len(testData['peak_value'])
-			for i in range(0,no_points):
-				value = testData["peak_value"][i]
-				freq = testData["peak_frequency"][i]
-				trainFeatures.append([freq,value])
-				trainLabels.append(data[index]['person'])
+			trainFeatures.append(testData["peak_frequency"])
+			trainLabels.append(data[index]['person'])
+			#no_points = len(testData['peak_value'])
+			#for i in range(0,no_points):
+			#	value = testData["peak_value"][i]
+			#	freq = testData["peak_frequency"][i]
+			#	trainFeatures.append([freq,value])
+			#	trainLabels.append(data[index]['person'])
 
-
-	print len(trainFeatures), " features"
-	print len(trainLabels), " labels"
 
 	cutoff = 1
 	total_no_features = len(trainFeatures);
 
-	return trainFeatures[cutoff:total_no_features], trainLabels[cutoff:total_no_features],trainFeatures[0:cutoff],trainLabels[0:cutoff]
+	return np.array(trainFeatures[cutoff:total_no_features]), np.array(trainLabels[cutoff:total_no_features]),trainFeatures[0:cutoff],trainLabels[0:cutoff]
 

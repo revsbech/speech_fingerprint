@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from detect_peak import detect_peaks
 
 
-def audio_fingerprint(signalData, windowSize, sampleRate, overlapRatio = 0):
+def audio_fingerprint(signalData, windowSize, sampleRate, overlapRatio = 0, no_samples=6):
 
 	#Varibles
 	numberOfWindows = len(signalData) / windowSize
@@ -36,8 +36,31 @@ def audio_fingerprint(signalData, windowSize, sampleRate, overlapRatio = 0):
 		max_peaks = detect_peaks(sampleData, mph=meanValue * 2)
 		peak_values = sampleData[max_peaks]
 
-		#print "Snapshow taken after", t[x], " seconds"
-		outdata = {'window_start_position': t[x], 'window_number': x, 'peak_frequency': freqs[max_peaks], 'peak_value': peak_values}
+		#temp = []
+		#for i in range(0, len(peak_values)):
+		#	temp.append((fremax_peaks[i], peak_values[i]])
+		#print temp
+		#print peak_values
+
+		#Sort by maximum peak values
+		ind = np.lexsort((max_peaks,peak_values))
+
+		#Take last elements
+		ind = ind[len(ind) - no_samples:]
+
+		#print "Peak values: ", peak_values[ind]
+		#print "Max peaks: ", max_peaks[ind]
+		#print "Indexes: ", ind
+		#print "Frequencies", freqs[max_peaks[ind]]
+		peak_freqs = freqs[max_peaks[ind]]
+		if len(peak_freqs) < no_samples:
+			peak_freqs.resize(no_samples)
+
+		peak_values = peak_values[ind]
+		if len(peak_values) < no_samples:
+			peak_values.resize(no_samples)
+
+		outdata = {'window_start_position': t[x], 'window_number': x, 'peak_frequency': peak_freqs, 'peak_value': peak_values}
 		outArr.append(outdata)
 
 	return outArr
